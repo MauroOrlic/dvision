@@ -1,0 +1,26 @@
+<annotation>
+  <folder>input</folder>
+  <filename>20190329_211500.jpg</filename>
+  <path>/home/mauro/Workspace/dvision/OpenLabeling/main/input/20190329_211500.jpg</path>
+  <source>
+    <database>Unknown</database>
+  </source>
+  <size>
+    <width>4032</width>
+    <height>1960</height>
+    <depth>3</depth>
+  </size>
+  <segmented>0</segmented>
+  <object>
+    <name>d20_16</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>190</xmin>
+      <ymin>674</ymin>
+      <xmax>1031</xmax>
+      <ymax>1456</ymax>
+    </bndbox>
+  </object>
+</annotation>

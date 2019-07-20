@@ -1,4 +1,3 @@
-#!/home/mauro/.virtualenvs/bbox/bin/python
 import argparse
 import glob
 import json

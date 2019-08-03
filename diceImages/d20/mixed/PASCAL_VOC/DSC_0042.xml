@@ -1,7 +1,7 @@
 <annotation>
   <folder>input</folder>
   <filename>DSC_0042.JPG</filename>
-  <path>/home/mauro/Workspace/DiceScanner/BBlabelTools/OpenLabeling-master/main/input/DSC_0042.JPG</path>
+  <path>/home/mauro/Workspace/dvision/OpenLabeling/main/input/DSC_0042.JPG</path>
   <source>
     <database>Unknown</database>
   </source>
@@ -12,123 +12,123 @@
   </size>
   <segmented>0</segmented>
   <object>
-    <name>d20</name>
+    <name>d20_20</name>
     <pose>Unspecified</pose>
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>2733</xmin>
-      <ymin>299</ymin>
-      <xmax>3072</xmax>
-      <ymax>652</ymax>
+      <xmin>2033</xmin>
+      <ymin>1122</ymin>
+      <xmax>2398</xmax>
+      <ymax>1509</ymax>
     </bndbox>
   </object>
   <object>
-    <name>d20</name>
+    <name>d20_18</name>
     <pose>Unspecified</pose>
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>1521</xmin>
-      <ymin>63</ymin>
-      <xmax>1857</xmax>
-      <ymax>419</ymax>
+      <xmin>1512</xmin>
+      <ymin>36</ymin>
+      <xmax>1861</xmax>
+      <ymax>467</ymax>
     </bndbox>
   </object>
   <object>
-    <name>d20</name>
+    <name>d20_18</name>
     <pose>Unspecified</pose>
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>446</xmin>
-      <ymin>1218</ymin>
-      <xmax>828</xmax>
-      <ymax>1568</ymax>
+      <xmin>611</xmin>
+      <ymin>2217</ymin>
+      <xmax>991</xmax>
+      <ymax>2643</ymax>
     </bndbox>
   </object>
   <object>
-    <name>d20</name>
+    <name>d20_17</name>
     <pose>Unspecified</pose>
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>2044</xmin>
-      <ymin>1162</ymin>
-      <xmax>2380</xmax>
-      <ymax>1491</ymax>
+      <xmin>3238</xmin>
+      <ymin>1491</ymin>
+      <xmax>3673</xmax>
+      <ymax>1909</ymax>
     </bndbox>
   </object>
   <object>
-    <name>d20</name>
+    <name>d20_16</name>
     <pose>Unspecified</pose>
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>1811</xmin>
-      <ymin>1501</ymin>
-      <xmax>2143</xmax>
-      <ymax>1848</ymax>
+      <xmin>1983</xmin>
+      <ymin>2421</ymin>
+      <xmax>2382</xmax>
+      <ymax>2856</ymax>
     </bndbox>
   </object>
   <object>
-    <name>d20</name>
+    <name>d20_14</name>
     <pose>Unspecified</pose>
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>2716</xmin>
-      <ymin>1518</ymin>
-      <xmax>3072</xmax>
-      <ymax>1864</ymax>
+      <xmin>2676</xmin>
+      <ymin>294</ymin>
+      <xmax>3084</xmax>
+      <ymax>666</ymax>
     </bndbox>
   </object>
   <object>
-    <name>d20</name>
+    <name>d20_7</name>
     <pose>Unspecified</pose>
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>3269</xmin>
-      <ymin>1551</ymin>
-      <xmax>3662</xmax>
-      <ymax>1894</ymax>
+      <xmin>425</xmin>
+      <ymin>1188</ymin>
+      <xmax>851</xmax>
+      <ymax>1582</ymax>
     </bndbox>
   </object>
   <object>
-    <name>d20</name>
+    <name>d20_6</name>
     <pose>Unspecified</pose>
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>2563</xmin>
-      <ymin>2660</ymin>
-      <xmax>2909</xmax>
-      <ymax>3053</ymax>
+      <xmin>1757</xmin>
+      <ymin>1455</ymin>
+      <xmax>2151</xmax>
+      <ymax>1845</ymax>
     </bndbox>
   </object>
   <object>
-    <name>d20</name>
+    <name>d20_3</name>
     <pose>Unspecified</pose>
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>1994</xmin>
-      <ymin>2477</ymin>
-      <xmax>2373</xmax>
-      <ymax>2830</ymax>
+      <xmin>2686</xmin>
+      <ymin>1478</ymin>
+      <xmax>3093</xmax>
+      <ymax>1886</ymax>
     </bndbox>
   </object>
   <object>
-    <name>d20</name>
+    <name>d20_4</name>
     <pose>Unspecified</pose>
     <truncated>0</truncated>
     <difficult>0</difficult>
     <bndbox>
-      <xmin>622</xmin>
-      <ymin>2247</ymin>
-      <xmax>965</xmax>
-      <ymax>2627</ymax>
+      <xmin>2536</xmin>
+      <ymin>2621</ymin>
+      <xmax>2921</xmax>
+      <ymax>3061</ymax>
     </bndbox>
   </object>
 </annotation>

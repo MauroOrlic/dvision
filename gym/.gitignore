@@ -58,3 +58,4 @@ darknet
 
 # Initial training model
 darknet53.conv.74
+*.txt

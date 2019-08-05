@@ -1,0 +1,26 @@
+<annotation>
+  <folder>input</folder>
+  <filename>20190331_163931.jpg</filename>
+  <path>D:\Dvision\OpenLabeling\main\input\20190331_163931.jpg</path>
+  <source>
+    <database>Unknown</database>
+  </source>
+  <size>
+    <width>4032</width>
+    <height>1960</height>
+    <depth>3</depth>
+  </size>
+  <segmented>0</segmented>
+  <object>
+    <name>d12_7</name>
+    <pose>Unspecified</pose>
+    <truncated>0</truncated>
+    <difficult>0</difficult>
+    <bndbox>
+      <xmin>2814</xmin>
+      <ymin>397</ymin>
+      <xmax>3878</xmax>
+      <ymax>1461</ymax>
+    </bndbox>
+  </object>
+</annotation>

@@ -134,7 +134,6 @@ def get_cropped_images(image: Image, yolo_objects: list):
     """
     image_template = {SOURCE_ID: 0, CROPPED_IMG: None}
     original_width, original_height = image.size
-    print(f"width={original_width}, height={original_height}")
     images = list()
     for yolo_object in yolo_objects:
         left = (yolo_object[POSITION_X] - 0.5 * yolo_object[WIDTH_X]) * original_width
@@ -142,24 +141,22 @@ def get_cropped_images(image: Image, yolo_objects: list):
         right = (yolo_object[POSITION_X] + 0.5 * yolo_object[WIDTH_X]) * original_width
         bottom = (yolo_object[POSITION_Y] - 0.5 * yolo_object[HEIGHT_Y]) * original_height
 
+        #top = original_height - top
+        #bottom = original_height - bottom
+
         image_object = deepcopy(image_template)
-        crop_touple = (ceil(left), floor(top), floor(right), ceil(bottom))
-        print(crop_touple)
+        crop_touple = (left, bottom, right, top)
+        #crop_touple = (floor(left), floor(top), floor(right), floor(bottom))
 
         image_object[SOURCE_ID] = yolo_object[SOURCE_ID]
         image_object[CROPPED_IMG] = image.crop(crop_touple)
-        image_object[CROPPED_IMG].show()
         images.append(image_object)
-        exit(0)
-
-    image.show()
-    exit(0)
 
     return images
 
 
 def write_classifier_images(die: str, group: str, image_objects: list):
-    print(f"Writing classifier images...")
+    print(f"Writing classifier images for {die}, {group} {LOCAL_IMAGE_COUNTER[die][group]}...")
     for image_object in image_objects:
         img_number = LOCAL_IMAGE_COUNTER[die][group]
         LOCAL_IMAGE_COUNTER[die][group] += 1

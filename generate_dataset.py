@@ -4,8 +4,7 @@ import shutil
 import fileinput
 import re
 from copy import deepcopy
-from PIL import Image
-from math import floor, ceil
+from PIL import Image, ExifTags
 
 LOCAL_IMAGE_COUNTER = deepcopy(IMAGE_COUNTER)
 
@@ -179,7 +178,26 @@ def get_classifier_images(file_objects: dict):
         lines = [line.rstrip('\n') for line in text]
         yolo_objects = get_yolo_objects(lines)
         image = Image.open(img_src)
+        ###
+        orientation = None
+        for iter_orientation in ExifTags.TAGS.keys():
+            if ExifTags.TAGS[iter_orientation] == 'Orientation':
+                orientation = iter_orientation
+                break
+        exif = dict(image._getexif().items())
+
+        try:
+            if exif[orientation] == 3:
+                image = image.rotate(180, expand=True)
+            elif exif[orientation] == 6:
+                image = image.rotate(270, expand=True)
+            elif exif[orientation] == 8:
+                image = image.rotate(90, expand=True)
+        except KeyError as e:
+            print(f"No exif Orientation(274) for {img_src}")
+        ###
         image_objects = get_cropped_images(image, yolo_objects)
+        image.close()
         die = get_die(txt_src)
         group = get_group(txt_src)
         write_classifier_images(die, group, image_objects)

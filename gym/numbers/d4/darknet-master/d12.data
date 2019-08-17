@@ -1,0 +1,6 @@
+classes=12
+train=../../../../dataset/numbers/d12/train.list
+valid=../../../../dataset/numbers/d12/test.list
+labels=../../../../dataset/numbers/d12/labels.txt
+backup = backup/
+top=4

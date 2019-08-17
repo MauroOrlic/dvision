@@ -5,8 +5,21 @@ import fileinput
 import re
 from copy import deepcopy
 from PIL import Image, ExifTags
+import inflect
 
+INFLECTOR_ENGINE = inflect.engine()
 LOCAL_IMAGE_COUNTER = deepcopy(IMAGE_COUNTER)
+
+
+def get_classifier_class_name(number: int):
+    #word = INFLECTOR_ENGINE.number_to_words(number, comma='', andword='')
+    #word = word.replace(' ', '')
+    for letter, num in NUMBER_MAP.items():
+        if num == number:
+            return 8*letter
+
+    raise ValueError(f"Unexpected number entered: {number}")
+
 
 def get_file_paths(path=f"{os.getcwd()}/diceImages"):
     print("Getting file paths...")
@@ -164,7 +177,7 @@ def write_classifier_images(die: str, group: str, image_objects: list):
                 die_number_id = number_id[NUMBERS_ID]
                 break
 
-        save_path = f"./dataset/numbers/{die}/{group}/{img_number}_{die_number_id}.jpg"
+        save_path = f"./dataset/numbers/{die}/{group}/{img_number}_{get_classifier_class_name(die_number_id)}.jpg"
         os.makedirs(os.path.dirname(save_path), exist_ok=True)
         image_object[CROPPED_IMG].save(save_path)
 
@@ -203,6 +216,16 @@ def get_classifier_images(file_objects: dict):
         write_classifier_images(die, group, image_objects)
 
 
+def copy_base_dataset(file_objects: dict):
+    for file_name_raw, file_object in file_objects.items():
+        txt_src = file_object['txt_src']
+        img_src = file_object['img_src']
+        group = get_group(txt_src)
+        save_path = f"./dataset/all/{group}/"
+        shutil.copy(txt_src, save_path)
+        shutil.copy(img_src, save_path)
+
+
 if __name__ == '__main__':
 
     of = get_object_files()
@@ -211,7 +234,8 @@ if __name__ == '__main__':
     remap_classes(of)
     generate_image_lists(of)
     '''
-    get_classifier_images(of)
+    #get_classifier_images(of)
+    copy_base_dataset(of)
 
 
 

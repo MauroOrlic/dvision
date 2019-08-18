@@ -3,8 +3,21 @@ import numpy
 
 
 class DarknetDetector:
-    def __init__(self, path_names:str, path_cfg:str, path_weights:str, minimum_confidence=0.5, nms_threshold=0.3):
-        self.class_names = self._get_classes(path_names)
+    def __init__(self, path_names: str, path_cfg: str, path_weights: str, minimum_confidence=0.5, nms_threshold=0.3):
+        """
+        Created using:
+
+        https://www.pyimagesearch.com/2018/11/12/yolo-object-detection-with-opencv/
+
+        Args:
+            path_names:
+            path_cfg:
+            path_weights:
+            minimum_confidence:
+            nms_threshold:
+        """
+        # TODO: appears to be unnecessary, remove
+        # self.class_names = self._get_classes(path_names)
         self.darknet = cv2.dnn.readNetFromDarknet(path_cfg, path_weights)
         self.layer_names = self._get_layer_names(self.darknet)
         self.minimum_confidence = minimum_confidence

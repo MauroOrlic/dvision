@@ -1,0 +1,5 @@
+DICE_NAMES = ''
+DICE_CFG = ''
+DICE_WEIGHTS = ''
+D4_CFG = ''
+D4_WEIGHTS = ''

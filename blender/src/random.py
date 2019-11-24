@@ -5,7 +5,7 @@ import random
 
 scn = bpy.context.scene
 
-def RunPerFrame(scene):
+def RunPerFrame(scene: bpy.types.Scene):
     
     #kockice=['d4_1','d6']
     

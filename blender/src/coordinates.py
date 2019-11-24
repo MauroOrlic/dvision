@@ -3,7 +3,7 @@ import bpy_extras
 import json
 
 
-def my_handler(scene):
+def my_handler(scene: bpy.types.Scene):
     obj = bpy.data.objects['Camera']
     co = bpy.data.objects["d4_1"].location
 

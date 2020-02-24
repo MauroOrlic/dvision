@@ -23,7 +23,8 @@ RUN sed -i 's,#MAKEFLAGS="-j2",MAKEFLAGS="-j$(nproc)",g' /etc/makepkg.conf \
 &&  sed -i "s,PKGEXT='.pkg.tar.xz',PKGEXT='.pkg.tar',g" /etc/makepkg.conf
 
 # Installing dependencies
-RUN su $AUR_USER -c 'trizen -S --noconfirm --needed cuda cudnn opencv-cuda opencv3-opt'
+RUN su $AUR_USER -c 'trizen -S --noconfirm --needed cuda cudnn qt5-base opencv opencv3-opt'
+ENV PATH="/opt/cuda/bin:$PATH"
 
 RUN git clone https://github.com/AlexeyAB/darknet.git \
 &&  cd darknet \
@@ -33,3 +34,4 @@ RUN git clone https://github.com/AlexeyAB/darknet.git \
 &&  make \
 &&  make install
 
+RUN /darknet/build-release/darknet detector test

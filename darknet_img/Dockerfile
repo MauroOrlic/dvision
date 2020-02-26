@@ -1,40 +1,43 @@
-FROM archlinux:latest
-RUN pacman -Syyu --noconfirm
-RUN pacman -S --noconfirm --needed base-devel git cmake 
+#FROM nvidia/cuda:10.2-cudnn7-devel-centos7
+FROM centos:8
 
-# Creating user that will install AUR packages
-ARG AUR_USER=aur_user
-RUN useradd -m $AUR_USER \
-&&  echo "${AUR_USER}:" | chpasswd -e \
-&&  echo "$AUR_USER ALL = NOPASSWD: ALL" >> /etc/sudoers
+# Setting run environment
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES compute,video,utility
 
-# Installing trizen - AUR package manager
-RUN pacman -S --noconfirm --needed pacutils perl-libwww perl-term-ui perl-json perl-data-dump perl-lwp-protocol-https perl-term-readline-gnu \
-&&  su $AUR_USER -c 'cd; git clone https://aur.archlinux.org/trizen.git' \
-&&  su $AUR_USER -c 'cd; cd trizen; makepkg' \
-&&  cd /home/$AUR_USER/trizen \
-&&  pacman -U --noconfirm --needed trizen*.pkg.tar* \
-&&  cd \
-&&  rm -rf /home/$AUR_USER/trizen \
-&&  su $AUR_USER -c 'trizen -Syyu --noconfirm'
-
-# Improving package build speed (thread count, disabling package compression)
-RUN sed -i 's,#MAKEFLAGS="-j2",MAKEFLAGS="-j$(nproc)",g' /etc/makepkg.conf \
-&&  sed -i "s,PKGEXT='.pkg.tar.xz',PKGEXT='.pkg.tar',g" /etc/makepkg.conf
+# Installing basic build tools
+RUN yum group install -y "Development Tools" 
+RUN yum install -y epel-release
+RUN yum install -y cmake3 \
+&&  alternatives --install /usr/local/bin/cmake cmake /usr/bin/cmake3 20 \
+    --slave /usr/local/bin/ctest ctest /usr/bin/ctest3 \
+    --slave /usr/local/bin/cpack cpack /usr/bin/cpack3 \
+    --slave /usr/local/bin/ccmake ccmake /usr/bin/ccmake3 \
+    --family cmake
 
 # Installing dependencies
-RUN pacman -S --noconfirm --needed cuda cudnn qt5-base opencv
-RUN pacman -Rsn --noconfirm opencv
-RUN su $AUR_USER -c 'trizen -S --noconfirm --needed opencv3 opencv3-opt'
-ENV PATH="/opt/cuda/bin:$PATH"
+RUN dnf install -y --nogpgcheck "https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm"
+RUN dnf install -y --nogpgcheck "https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm" "https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-8.noarch.rpm"
+RUN dnf config-manager --enable PowerTools
+RUN yum install -y xorg-x11-drv-nvidia-cuda
+RUN yum install -y xorg-x11-drv-nvidia-cuda-libs 
+RUN yum install -y opencv-devel 
+RUN yum install -y opencv
 
-# Installing Darknet
+RUN dnf config-manager --add-repo "http://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-rhel8.repo"
+RUN yum install -y cuda
+
+ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/cuda/lib64"
+ENV PATH="$PATH:/usr/local/cuda-10.2/bin"
+
+# Building and installing darknet
 RUN git clone https://github.com/AlexeyAB/darknet.git \
-&&  cd darknet \
-&&  mkdir build-release \
-&&  cd build-release \
+&&  cd darknet && mkdir build-release && cd build-release \
 &&  cmake .. \
-&&  make \
-&&  make install
+    -DCMAKE_C_STANDARD=99 \
+&&  export DESTDIR=/opt \
+&&  make -j $(nproc) && make install \
+&&  rm -rf /darknet
 
-RUN /darknet/build-release/darknet detector test
+ENV PATH="$PATH:/opt/darknet"
+

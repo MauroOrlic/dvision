@@ -42,3 +42,7 @@ RUN git clone https://github.com/AlexeyAB/darknet.git \
 &&  rm -rf /darknet
 ENV PATH="$PATH:/opt/darknet"
 
+RUN mkdir /mnt/dataset
+WORKDIR /mnt/dataset
+
+EXPOSE 8090

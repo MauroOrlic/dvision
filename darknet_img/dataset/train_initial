@@ -1,0 +1,4 @@
+#!/bin/bash
+docker run --privileged --gpus all -v ${PWD}:/mnt/dataset -p 8090:8090 darknet:0.1 darknet detector train all.data all.cfg darknet53.conv.74 -dont_show -map
+#sudo docker run --privileged --gpus all -v ${PWD}:/mnt/dataset -p 8090:8090 darknet:0.1 darknet detector train all.data all.cfg darknet53.conv.74 -dont_show -mjpeg_port 8090 -map
+
